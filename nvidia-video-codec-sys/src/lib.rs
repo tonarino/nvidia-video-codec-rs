@@ -4,6 +4,7 @@
 pub mod cuda;
 pub mod cuvid;
 pub mod nvenc;
+pub mod nvenc_cuda;
 
 #[cfg(test)]
 mod tests {
