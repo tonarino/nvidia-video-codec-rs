@@ -2,7 +2,6 @@ use std::os::raw::c_int;
 use std::os::raw::c_char;
 
 use ffi::cuda::*;
-use ffi::cuda::cudaError_enum::*;
 
 pub struct CuDevice {
     device: CUdevice,
@@ -35,9 +34,9 @@ impl CuDevice {
         wrap!(val, res)
     }
 
-    pub fn get_total_mem(&self) -> Result<usize, CUresult> {
-        let mut val = 0;
-        let res = unsafe { cuDeviceTotalMem_v2(&mut val as *mut usize, self.device) };
+    pub fn get_total_mem(&self) -> Result<u64, CUresult> {
+        let mut val = 0u64;
+        let res = unsafe { cuDeviceTotalMem_v2(&mut val as *mut u64, self.device) };
 
         wrap!(val, res)
     }
